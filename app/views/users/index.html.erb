@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" >
+    <link rel="stylesheet" href="default.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<header>
+<nav class="navbar navbar-inverse">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<div class="navbar-brand theme">Bookers</div>
+		</div>
+
+		<div class="collapse navbar-collapse">
+			<ul class="nav navbar-nav navbar-right">
+                <li class="nav-li"><%= link_to " Home", users_path, class: "fas fa-home list-icon" %></li>
+                <li class="nav-li"><%= link_to " About", users_about_path, class: "fas fa-link list-icon" %></li>
+				<% if user_signed_in? %>
+                    <li class="nav-li"><%= link_to 'log out', users_path, :method => :delete, class:"fas fa-sign-out-alt" %></li>
+                <% else %>
+                    <li class="nav-li"><%= link_to " sign up", new_user_registration_path, class: "fas fa-edit list-icon" %></li>
+                    <li class="nav-li"><%= link_to " log in", new_user_session_path, class: "fas fa-sign-in-alt list-icon" %></li>
+                <% end %>
+			</ul>
+		</div>
+	</div>
+</nav>
+</header>
+<body>
+    <div class="user-explanation">
+        <h1 class="user-index-theme">welcome to <i class="fas fa-book">Bookers  !!</i></h1>
+        <p>In <i class="fas fa-book">Bookers</i><strong></strong></p>
+        <p>you can share and exchange your opinions,impressions, and emotions<br>about various books!</p>
+        <% if user_signed_in? %>
+        <li class="header-li"><%= link_to 'log out', users_path, :method => :delete %></li>
+    <% else %>
+    <div class="btn-group-vertical">
+    <button type="button" class="btn btn-success col-xs-10 col-xs-offset-1"><%= link_to " Log in", new_user_session_path, class: "btn_user" %></button>
+    <button type="button" class="btn btn-info col-xs-10 col-xs-offset-1"><%= link_to " Sign up", new_user_registration_path, class: "btn_user" %></button>
+    <% end %>
+    </div>
+    </div>
+</body>
+<footer><p class="footer-text">CopyRight Infratop.inc</p></footer>
+</html>
