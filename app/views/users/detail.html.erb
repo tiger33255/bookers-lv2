@@ -8,24 +8,19 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-
-<p><%= flash[:success] %></p>
-<p><%= flash[:notice] %></p>
 <div class="col-xs-3">
-    <h2>User</h2>
+    <h2>User info</h2>
     <table class="table table-user">
         <tbody>
-        <% if user_signed_in? %>
             <tr>
                 <td><%= attachment_image_tag current_user, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "100x100" %></td>
             </tr>
             <tr>
-            <td>name   <%= current_user.name %></td>
+            <td>name       <%= current_user.name %></td>
             </tr>
             <tr>
-                <td>introduction<br><%= current_user.introduction %></td>
+                <td>introduction        <%= current_user.introduction %></td>
             </tr>
-        <% end %>
         </tbody>
     </table>
     <%= link_to edit_user_path(current_user), class: "btn btn-default btn-gear", style: "width: 335px;" do %>
@@ -45,20 +40,19 @@
 
 <table class="table table-book" style="width: 70%;">
         <thead>
-            <h2>Users</h2>
-            <tr>
-                <th>image</th>
-                <th>name</th>
-                <th></th>
-            </tr>
+            <h2>Book detail</h2>
         </thead>
         <tbody>
+            <% @books.each do |book| %>
             <% @users.each do |a| %>
             <tr>
-                <td><%= attachment_image_tag a, :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %></td>
-                <td><%= a.name %></td>
-                <td><%= link_to  "Show", user_path(a.id) %></td>
+                <td><%= attachment_image_tag a , :profile_image,　format: 'jpeg', fallback: "no_image.jpg", size: "50x50" %></td>
+                <td><%= book.title %></td>
+                <td><%= book.body %></td>
+                <td><%= link_to  "Edit", edit_book_path(book), class: "btn btn-success" %></td>
+                <td><%= link_to  "Destroy", book_path(book), method: :'delete',"data-confirm" => "本当に消しますか？", class: "btn btn-danger" %></td>
             </tr>
+            <% end %>
             <% end %>
         </tbody>
     </table>
